@@ -9,7 +9,7 @@ COPY . .
 
 RUN go generate
 
-RUN CGO_ENABLED=0 GOOS=linux go build -o bot main.go
+RUN CGO_ENABLED=0 GOOS=linux go build -o bot .
 
 FROM debian:bookworm-slim
 

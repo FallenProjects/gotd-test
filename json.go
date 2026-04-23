@@ -9,10 +9,11 @@ import (
 	"github.com/AshokShau/gotdbot"
 )
 
-func sendJSON(c *gotdbot.Client, chatID, replyToID int64, jsonStr string) error {
-	if len([]rune(jsonStr)) <= maxMessageLen {
-		escaped := gotdbot.EscapeHTML(jsonStr)
-		text := "<pre><code class=\"language-json\">" + escaped + "</code></pre>"
+func sendJSON(c *gotdbot.Client, chatID, replyToID int64, output string) error {
+	language := "json"
+	if len([]rune(output)) <= maxMessageLen {
+		escaped := gotdbot.EscapeHTML(output)
+		text := "<pre language=\"" + language + "\">" + escaped + "</pre>"
 		_, err := c.SendTextMessage(chatID, text, &gotdbot.SendTextMessageOpts{
 			ParseMode:        gotdbot.ParseModeHTML,
 			ReplyToMessageID: replyToID,
@@ -26,21 +27,26 @@ func sendJSON(c *gotdbot.Client, chatID, replyToID int64, jsonStr string) error 
 	}
 	defer os.Remove(tmpFile.Name())
 
-	if _, err = tmpFile.WriteString(jsonStr); err != nil {
+	if _, err = tmpFile.WriteString(output); err != nil {
 		tmpFile.Close()
 		return fmt.Errorf("write temp file: %w", err)
 	}
 	tmpFile.Close()
 
-	_, err = c.SendDocument(chatID, gotdbot.InputFileLocal{Path: tmpFile.Name()}, &gotdbot.SendDocumentOpts{
+	docOpts := &gotdbot.SendDocumentOpts{
 		ReplyToMessageID: replyToID,
-	})
+	}
+	_, err = c.SendDocument(chatID, gotdbot.InputFileLocal{Path: tmpFile.Name()}, docOpts)
 	return err
 }
 
 func printJsonHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	if ctx.EffectiveMessage != nil && ctx.EffectiveMessage.IsOutgoing {
 		return gotdbot.EndGroups
+	}
+
+	if chatID := ctx.EffectiveChatId; chatID != 0 && !isDebugEnabled(chatID) {
+		return nil
 	}
 
 	data, marshalErr := json.MarshalIndent(ctx.RawUpdate, "", "  ")

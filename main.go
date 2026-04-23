@@ -52,5 +52,6 @@ func (h *catchAllHandler) HandleUpdate(c *gotdbot.Client, ctx *gotdbot.Context) 
 
 func setupHandlers(d *gotdbot.Dispatcher) {
 	d.AddHandler(handlers.NewCommand("eval", evalCommandHandler))
+	d.AddHandler(handlers.NewCommand("debug", debugCommandHandler))
 	d.AddHandlerToGroup(&catchAllHandler{fn: printJsonHandler}, 0)
 }

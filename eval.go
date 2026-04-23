@@ -5,7 +5,6 @@ import (
 	"context"
 	"fmt"
 	"go/build"
-	"io"
 	"log"
 	"os"
 	"reflect"
@@ -23,14 +22,13 @@ func evalCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	}
 
 	text := m.GetText()
-	parts := strings.SplitN(text, " ", 2)
 	var code string
-	if len(parts) > 1 {
-		code = strings.TrimSpace(parts[1])
+	if idx := strings.IndexAny(text, " \n\t"); idx > 0 {
+		code = strings.TrimSpace(text[idx+1:])
 	}
 
 	if code == "" {
-		_, _ = m.ReplyText(c, "No code provided. Usage: /eval <code ", nil)
+		_, _ = m.ReplyText(c, "No code provided. Usage: /eval &lt;code&gt;", &gotdbot.SendTextMessageOpts{ParseMode: gotdbot.ParseModeHTML})
 		return gotdbot.EndGroups
 	}
 
@@ -47,110 +45,96 @@ func evalCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	})
 
 	if err := i.Use(stdlib.Symbols); err != nil {
-		fmt.Println("Error using stdlib symbols:", err)
+		log.Printf("Error using stdlib symbols: %v", err)
 	}
 
 	if err := i.Use(Symbols); err != nil {
-		fmt.Println("Error using custom symbols:", err)
+		log.Printf("Error using custom symbols: %v", err)
 	}
 
 	customSymbols := map[string]map[string]reflect.Value{
 		"eval/eval": {
-			"C":       reflect.ValueOf(c),
-			"Client":  reflect.ValueOf(c),
-			"Ctx":     reflect.ValueOf(ctx),
-			"Context": reflect.ValueOf(ctx),
-			"M":       reflect.ValueOf(m),
-			"Message": reflect.ValueOf(m),
+			"C":   reflect.ValueOf(c),
+			"Ctx": reflect.ValueOf(ctx),
+			"M":   reflect.ValueOf(m),
 		},
 	}
 
 	if err := i.Use(customSymbols); err != nil {
-		fmt.Println("failed to use custom eval symbols:", err)
+		log.Printf("Failed to use custom eval symbols: %v", err)
 	}
 
 	if !strings.Contains(code, "package ") && !strings.Contains(code, "func ") {
 		code = fmt.Sprintf(`package main
+
 import (
 	e "eval/eval"
+	"encoding/json"
 	"fmt"
 	"os"
 	"github.com/AshokShau/gotdbot"
 )
 
 func runSnippet() (res any) {
-	c, client, Client := e.C, e.C, e.C
-	ctx, Context := e.Ctx, e.Ctx
-	m, message, Message := e.M, e.M, e.M
-
-	_ = c; _ = client; _ = Client
-	_ = ctx; _ = Context
-	_ = m; _ = message; _ = Message
-
+	c := e.C
+	ctx := e.Ctx
+	m := e.M
+	_ = c
+	_ = ctx
+	_ = m
 	%s
-
 	return res
 }
 
 func main() {
 	if res := runSnippet(); res != nil {
-		fmt.Println(res)
+		if data, err := json.MarshalIndent(res, "", "  "); err == nil {
+			fmt.Println(string(data))
+		} else {
+			fmt.Println(res)
+		}
 	}
 }`, code)
 	}
 
 	_, err := i.EvalWithContext(context.Background(), code)
 	if err != nil {
-		_, err := m.ReplyText(c, fmt.Sprintf("<b>#EVALERR:</b> <code>%s</code>", gotdbot.EscapeHTML(err.Error())), &gotdbot.SendTextMessageOpts{
+		errMsg := fmt.Sprintf(
+			"<pre language=\"go\">%s</pre>",
+			gotdbot.EscapeHTML(err.Error()),
+		)
+		if _, sendErr := m.ReplyText(c, errMsg, &gotdbot.SendTextMessageOpts{
 			ParseMode: gotdbot.ParseModeHTML,
-		})
-
-		if err != nil {
-			log.Printf("Failed to send error message: %v", err)
-			return gotdbot.EndGroups
+		}); sendErr != nil {
+			log.Printf("Failed to send error message: %v", sendErr)
 		}
-
 		return gotdbot.EndGroups
 	}
 
-	var output string
-	if stdout.Len() > 0 {
-		output = stdout.String()
-	}
-	if stderr.Len() > 0 {
-		output += "\n" + stderr.String()
-	}
+	output := buildOutput(stdout, stderr)
+	trimmed := strings.TrimSpace(output)
 
-	if strings.TrimSpace(output) == "" {
-		output = "No Output"
-	}
-
-	if len(output) > maxMessageLen {
-		file, _ := os.Create("output.txt")
-		defer file.Close()
-		_, _ = io.WriteString(file, output)
-		defer os.Remove(file.Name())
-
-		_, err := m.ReplyDocument(c, &gotdbot.InputFileLocal{Path: file.Name()}, &gotdbot.SendDocumentOpts{
-			Caption: "Output",
-		})
-
-		if err != nil {
-			log.Printf("Failed to send document: %v", err)
-			return gotdbot.EndGroups
-		}
-
-		return gotdbot.EndGroups
-	}
-
-	_, err = m.ReplyText(c, fmt.Sprintf("<b>#EVALOut:</b>\n<code>%s</code>", gotdbot.EscapeHTML(strings.TrimSpace(output))), &gotdbot.SendTextMessageOpts{
-		ParseMode: gotdbot.ParseModeHTML,
-	})
-
-	if err != nil {
+	if err = sendJSON(c, m.ChatId, m.Id, trimmed); err != nil {
 		log.Printf("Failed to send output message: %v", err)
-		return gotdbot.EndGroups
 	}
 
 	return gotdbot.EndGroups
+}
+
+func buildOutput(stdout, stderr bytes.Buffer) string {
+	var sb strings.Builder
+	if stdout.Len() > 0 {
+		sb.WriteString(stdout.String())
+	}
+	if stderr.Len() > 0 {
+		if sb.Len() > 0 {
+			sb.WriteByte('\n')
+		}
+		sb.WriteString(stderr.String())
+	}
+	out := strings.TrimSpace(sb.String())
+	if out == "" {
+		return "No Output"
+	}
+	return out
 }
