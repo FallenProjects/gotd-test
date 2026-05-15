@@ -40,6 +40,7 @@ func setDebugEnabled(chatID int64, enabled bool) {
 
 func debugCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 	m := ctx.EffectiveMessage
+
 	chatID := ctx.EffectiveChatId
 	parts := strings.Fields(m.GetText())
 	if len(parts) < 2 {
