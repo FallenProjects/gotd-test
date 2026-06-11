@@ -14,28 +14,29 @@ func init() {
 		// function, constant and variable definitions
 		"Bool":                                          reflect.ValueOf(gotdbot.Bool),
 		"ContinueGroups":                                reflect.ValueOf(&gotdbot.ContinueGroups).Elem(),
+		"ContinueHandlers":                              reflect.ValueOf(&gotdbot.ContinueHandlers).Elem(),
 		"ConversationCancelled":                         reflect.ValueOf(&gotdbot.ConversationCancelled).Elem(),
 		"ConversationTimeout":                           reflect.ValueOf(&gotdbot.ConversationTimeout).Elem(),
 		"DefaultClientConfig":                           reflect.ValueOf(gotdbot.DefaultClientConfig),
+		"DefaultMatchingOptions":                        reflect.ValueOf(gotdbot.DefaultMatchingOptions),
 		"EndGroups":                                     reflect.ValueOf(&gotdbot.EndGroups).Elem(),
 		"ErrNoFormattedText":                            reflect.ValueOf(&gotdbot.ErrNoFormattedText).Elem(),
 		"EscapeHTML":                                    reflect.ValueOf(gotdbot.EscapeHTML),
 		"EscapeMarkdown":                                reflect.ValueOf(gotdbot.EscapeMarkdown),
 		"GetDefaultManager":                             reflect.ValueOf(gotdbot.GetDefaultManager),
-		"GetFormattedText":                              reflect.ValueOf(gotdbot.GetFormattedText),
 		"GetInputFile":                                  reflect.ValueOf(gotdbot.GetInputFile),
 		"Mention":                                       reflect.ValueOf(gotdbot.Mention),
 		"NewClient":                                     reflect.ValueOf(gotdbot.NewClient),
 		"NewClientManager":                              reflect.ValueOf(gotdbot.NewClientManager),
-		"NewContext":                                    reflect.ValueOf(gotdbot.NewContext),
-		"NewContextUpdates":                             reflect.ValueOf(gotdbot.NewContextUpdates),
-		"NewDispatcher":                                 reflect.ValueOf(gotdbot.NewDispatcher),
+		"NewCommandHandler":                             reflect.ValueOf(gotdbot.NewCommandHandler),
+		"NewMessageHandler":                             reflect.ValueOf(gotdbot.NewMessageHandler),
+		"NewUpdateNewMessageFilter":                     reflect.ValueOf(gotdbot.NewUpdateNewMessageFilter),
 		"ParseModeHTML":                                 reflect.ValueOf(constant.MakeFromLiteral("\"HTML\"", token.STRING, 0)),
 		"ParseModeMarkdown":                             reflect.ValueOf(constant.MakeFromLiteral("\"Markdown\"", token.STRING, 0)),
 		"ParseModeMarkdownV2":                           reflect.ValueOf(constant.MakeFromLiteral("\"MarkdownV2\"", token.STRING, 0)),
 		"ParseModeNone":                                 reflect.ValueOf(constant.MakeFromLiteral("\"\"", token.STRING, 0)),
 		"SendTimeout":                                   reflect.ValueOf(&gotdbot.SendTimeout).Elem(),
-		"TDLibVersion":                                  reflect.ValueOf(constant.MakeFromLiteral("\"v1.8.63\"", token.STRING, 0)),
+		"TDLibVersion":                                  reflect.ValueOf(constant.MakeFromLiteral("\"v1.8.65\"", token.STRING, 0)),
 		"Unmarshal":                                     reflect.ValueOf(gotdbot.Unmarshal),
 		"UnmarshalActiveStoryState":                     reflect.ValueOf(gotdbot.UnmarshalActiveStoryState),
 		"UnmarshalAffiliateProgramSortOrder":            reflect.ValueOf(gotdbot.UnmarshalAffiliateProgramSortOrder),
@@ -67,6 +68,8 @@ func init() {
 		"UnmarshalChatAvailableReactions":               reflect.ValueOf(gotdbot.UnmarshalChatAvailableReactions),
 		"UnmarshalChatBoostSource":                      reflect.ValueOf(gotdbot.UnmarshalChatBoostSource),
 		"UnmarshalChatEventAction":                      reflect.ValueOf(gotdbot.UnmarshalChatEventAction),
+		"UnmarshalChatJoinRequestResult":                reflect.ValueOf(gotdbot.UnmarshalChatJoinRequestResult),
+		"UnmarshalChatJoinResult":                       reflect.ValueOf(gotdbot.UnmarshalChatJoinResult),
 		"UnmarshalChatList":                             reflect.ValueOf(gotdbot.UnmarshalChatList),
 		"UnmarshalChatMemberStatus":                     reflect.ValueOf(gotdbot.UnmarshalChatMemberStatus),
 		"UnmarshalChatMembersFilter":                    reflect.ValueOf(gotdbot.UnmarshalChatMembersFilter),
@@ -87,6 +90,7 @@ func init() {
 		"UnmarshalDeviceToken":                          reflect.ValueOf(gotdbot.UnmarshalDeviceToken),
 		"UnmarshalDiceStickers":                         reflect.ValueOf(gotdbot.UnmarshalDiceStickers),
 		"UnmarshalDiffEntityType":                       reflect.ValueOf(gotdbot.UnmarshalDiffEntityType),
+		"UnmarshalDraftMessageContent":                  reflect.ValueOf(gotdbot.UnmarshalDraftMessageContent),
 		"UnmarshalEmailAddressAuthentication":           reflect.ValueOf(gotdbot.UnmarshalEmailAddressAuthentication),
 		"UnmarshalEmailAddressResetState":               reflect.ValueOf(gotdbot.UnmarshalEmailAddressResetState),
 		"UnmarshalEmojiCategorySource":                  reflect.ValueOf(gotdbot.UnmarshalEmojiCategorySource),
@@ -121,6 +125,7 @@ func init() {
 		"UnmarshalInputPaidMediaType":                   reflect.ValueOf(gotdbot.UnmarshalInputPaidMediaType),
 		"UnmarshalInputPassportElement":                 reflect.ValueOf(gotdbot.UnmarshalInputPassportElement),
 		"UnmarshalInputPassportElementErrorSource":      reflect.ValueOf(gotdbot.UnmarshalInputPassportElementErrorSource),
+		"UnmarshalInputPollMedia":                       reflect.ValueOf(gotdbot.UnmarshalInputPollMedia),
 		"UnmarshalInputPollType":                        reflect.ValueOf(gotdbot.UnmarshalInputPollType),
 		"UnmarshalInputStoryAreaType":                   reflect.ValueOf(gotdbot.UnmarshalInputStoryAreaType),
 		"UnmarshalInputStoryContent":                    reflect.ValueOf(gotdbot.UnmarshalInputStoryContent),
@@ -166,6 +171,7 @@ func init() {
 		"UnmarshalPaymentProvider":                      reflect.ValueOf(gotdbot.UnmarshalPaymentProvider),
 		"UnmarshalPaymentReceiptType":                   reflect.ValueOf(gotdbot.UnmarshalPaymentReceiptType),
 		"UnmarshalPhoneNumberCodeType":                  reflect.ValueOf(gotdbot.UnmarshalPhoneNumberCodeType),
+		"UnmarshalPollMedia":                            reflect.ValueOf(gotdbot.UnmarshalPollMedia),
 		"UnmarshalPollType":                             reflect.ValueOf(gotdbot.UnmarshalPollType),
 		"UnmarshalPollVoteRestrictionReason":            reflect.ValueOf(gotdbot.UnmarshalPollVoteRestrictionReason),
 		"UnmarshalPremiumFeature":                       reflect.ValueOf(gotdbot.UnmarshalPremiumFeature),
@@ -188,12 +194,15 @@ func init() {
 		"UnmarshalResendCodeReason":                     reflect.ValueOf(gotdbot.UnmarshalResendCodeReason),
 		"UnmarshalResetPasswordResult":                  reflect.ValueOf(gotdbot.UnmarshalResetPasswordResult),
 		"UnmarshalRevenueWithdrawalState":               reflect.ValueOf(gotdbot.UnmarshalRevenueWithdrawalState),
+		"UnmarshalRichMessageSource":                    reflect.ValueOf(gotdbot.UnmarshalRichMessageSource),
 		"UnmarshalRichText":                             reflect.ValueOf(gotdbot.UnmarshalRichText),
 		"UnmarshalSavedMessagesTopicType":               reflect.ValueOf(gotdbot.UnmarshalSavedMessagesTopicType),
+		"UnmarshalSearchChatTypeFilter":                 reflect.ValueOf(gotdbot.UnmarshalSearchChatTypeFilter),
 		"UnmarshalSearchMessagesChatTypeFilter":         reflect.ValueOf(gotdbot.UnmarshalSearchMessagesChatTypeFilter),
 		"UnmarshalSearchMessagesFilter":                 reflect.ValueOf(gotdbot.UnmarshalSearchMessagesFilter),
 		"UnmarshalSecretChatState":                      reflect.ValueOf(gotdbot.UnmarshalSecretChatState),
 		"UnmarshalSentGift":                             reflect.ValueOf(gotdbot.UnmarshalSentGift),
+		"UnmarshalSessionDeviceType":                    reflect.ValueOf(gotdbot.UnmarshalSessionDeviceType),
 		"UnmarshalSessionType":                          reflect.ValueOf(gotdbot.UnmarshalSessionType),
 		"UnmarshalSettingsSection":                      reflect.ValueOf(gotdbot.UnmarshalSettingsSection),
 		"UnmarshalSpeechRecognitionResult":              reflect.ValueOf(gotdbot.UnmarshalSpeechRecognitionResult),
@@ -237,9 +246,10 @@ func init() {
 		"UnmarshalUserType":                             reflect.ValueOf(gotdbot.UnmarshalUserType),
 		"UnmarshalVectorPathCommand":                    reflect.ValueOf(gotdbot.UnmarshalVectorPathCommand),
 		"UnmarshalWebAppOpenMode":                       reflect.ValueOf(gotdbot.UnmarshalWebAppOpenMode),
+		"UnmarshalWebBrowserType":                       reflect.ValueOf(gotdbot.UnmarshalWebBrowserType),
 		"UnmarshalWithClient":                           reflect.ValueOf(gotdbot.UnmarshalWithClient),
 		"UnparseEntities":                               reflect.ValueOf(gotdbot.UnparseEntities),
-		"Version":                                       reflect.ValueOf(constant.MakeFromLiteral("\"v0.9.1\"", token.STRING, 0)),
+		"Version":                                       reflect.ValueOf(constant.MakeFromLiteral("\"v0.9.3\"", token.STRING, 0)),
 		"WaitPremiumPurchase":                           reflect.ValueOf(&gotdbot.WaitPremiumPurchase).Elem(),
 
 		// type definitions
@@ -295,6 +305,8 @@ func init() {
 		"AddStickerToSet":                                         reflect.ValueOf((*gotdbot.AddStickerToSet)(nil)),
 		"AddStoryAlbumStories":                                    reflect.ValueOf((*gotdbot.AddStoryAlbumStories)(nil)),
 		"AddTextCompositionStyle":                                 reflect.ValueOf((*gotdbot.AddTextCompositionStyle)(nil)),
+		"AddWebBrowserSettingsException":                          reflect.ValueOf((*gotdbot.AddWebBrowserSettingsException)(nil)),
+		"AddWebBrowserSettingsExceptionOpts":                      reflect.ValueOf((*gotdbot.AddWebBrowserSettingsExceptionOpts)(nil)),
 		"AddedProxies":                                            reflect.ValueOf((*gotdbot.AddedProxies)(nil)),
 		"AddedProxy":                                              reflect.ValueOf((*gotdbot.AddedProxy)(nil)),
 		"AddedReaction":                                           reflect.ValueOf((*gotdbot.AddedReaction)(nil)),
@@ -323,6 +335,7 @@ func init() {
 		"Animations":                                              reflect.ValueOf((*gotdbot.Animations)(nil)),
 		"AnswerCallbackQuery":                                     reflect.ValueOf((*gotdbot.AnswerCallbackQuery)(nil)),
 		"AnswerCallbackQueryOpts":                                 reflect.ValueOf((*gotdbot.AnswerCallbackQueryOpts)(nil)),
+		"AnswerChatJoinRequestQuery":                              reflect.ValueOf((*gotdbot.AnswerChatJoinRequestQuery)(nil)),
 		"AnswerCustomQuery":                                       reflect.ValueOf((*gotdbot.AnswerCustomQuery)(nil)),
 		"AnswerGuestQuery":                                        reflect.ValueOf((*gotdbot.AnswerGuestQuery)(nil)),
 		"AnswerInlineQuery":                                       reflect.ValueOf((*gotdbot.AnswerInlineQuery)(nil)),
@@ -449,6 +462,7 @@ func init() {
 		"BusinessChatLinkInfo":                                    reflect.ValueOf((*gotdbot.BusinessChatLinkInfo)(nil)),
 		"BusinessChatLinks":                                       reflect.ValueOf((*gotdbot.BusinessChatLinks)(nil)),
 		"BusinessConnectedBot":                                    reflect.ValueOf((*gotdbot.BusinessConnectedBot)(nil)),
+		"BusinessConnectedBotInfo":                                reflect.ValueOf((*gotdbot.BusinessConnectedBotInfo)(nil)),
 		"BusinessConnection":                                      reflect.ValueOf((*gotdbot.BusinessConnection)(nil)),
 		"BusinessFeature":                                         reflect.ValueOf((*gotdbot.BusinessFeature)(nil)),
 		"BusinessFeatureAccountLinks":                             reflect.ValueOf((*gotdbot.BusinessFeatureAccountLinks)(nil)),
@@ -551,6 +565,8 @@ func init() {
 		"ChangeImportedContacts":                                  reflect.ValueOf((*gotdbot.ChangeImportedContacts)(nil)),
 		"ChangeStickerSet":                                        reflect.ValueOf((*gotdbot.ChangeStickerSet)(nil)),
 		"ChangeStickerSetOpts":                                    reflect.ValueOf((*gotdbot.ChangeStickerSetOpts)(nil)),
+		"ChangeWebBrowserSettings":                                reflect.ValueOf((*gotdbot.ChangeWebBrowserSettings)(nil)),
+		"ChangeWebBrowserSettingsOpts":                            reflect.ValueOf((*gotdbot.ChangeWebBrowserSettingsOpts)(nil)),
 		"Chat":                                                    reflect.ValueOf((*gotdbot.Chat)(nil)),
 		"ChatAction":                                              reflect.ValueOf((*gotdbot.ChatAction)(nil)),
 		"ChatActionBar":                                           reflect.ValueOf((*gotdbot.ChatActionBar)(nil)),
@@ -668,8 +684,17 @@ func init() {
 		"ChatInviteLinkSubscriptionInfo":                          reflect.ValueOf((*gotdbot.ChatInviteLinkSubscriptionInfo)(nil)),
 		"ChatInviteLinks":                                         reflect.ValueOf((*gotdbot.ChatInviteLinks)(nil)),
 		"ChatJoinRequest":                                         reflect.ValueOf((*gotdbot.ChatJoinRequest)(nil)),
+		"ChatJoinRequestResult":                                   reflect.ValueOf((*gotdbot.ChatJoinRequestResult)(nil)),
+		"ChatJoinRequestResultApproved":                           reflect.ValueOf((*gotdbot.ChatJoinRequestResultApproved)(nil)),
+		"ChatJoinRequestResultDeclined":                           reflect.ValueOf((*gotdbot.ChatJoinRequestResultDeclined)(nil)),
+		"ChatJoinRequestResultQueued":                             reflect.ValueOf((*gotdbot.ChatJoinRequestResultQueued)(nil)),
 		"ChatJoinRequests":                                        reflect.ValueOf((*gotdbot.ChatJoinRequests)(nil)),
 		"ChatJoinRequestsInfo":                                    reflect.ValueOf((*gotdbot.ChatJoinRequestsInfo)(nil)),
+		"ChatJoinResult":                                          reflect.ValueOf((*gotdbot.ChatJoinResult)(nil)),
+		"ChatJoinResultDeclined":                                  reflect.ValueOf((*gotdbot.ChatJoinResultDeclined)(nil)),
+		"ChatJoinResultGuardBotApprovalRequired":                  reflect.ValueOf((*gotdbot.ChatJoinResultGuardBotApprovalRequired)(nil)),
+		"ChatJoinResultRequestSent":                               reflect.ValueOf((*gotdbot.ChatJoinResultRequestSent)(nil)),
+		"ChatJoinResultSuccess":                                   reflect.ValueOf((*gotdbot.ChatJoinResultSuccess)(nil)),
 		"ChatList":                                                reflect.ValueOf((*gotdbot.ChatList)(nil)),
 		"ChatListArchive":                                         reflect.ValueOf((*gotdbot.ChatListArchive)(nil)),
 		"ChatListFolder":                                          reflect.ValueOf((*gotdbot.ChatListFolder)(nil)),
@@ -744,6 +769,7 @@ func init() {
 		"CheckAuthenticationPassword":                             reflect.ValueOf((*gotdbot.CheckAuthenticationPassword)(nil)),
 		"CheckAuthenticationPasswordRecoveryCode":                 reflect.ValueOf((*gotdbot.CheckAuthenticationPasswordRecoveryCode)(nil)),
 		"CheckAuthenticationPremiumPurchase":                      reflect.ValueOf((*gotdbot.CheckAuthenticationPremiumPurchase)(nil)),
+		"CheckAuthenticationWebToken":                             reflect.ValueOf((*gotdbot.CheckAuthenticationWebToken)(nil)),
 		"CheckBotUsername":                                        reflect.ValueOf((*gotdbot.CheckBotUsername)(nil)),
 		"CheckChatFolderInviteLink":                               reflect.ValueOf((*gotdbot.CheckChatFolderInviteLink)(nil)),
 		"CheckChatInviteLink":                                     reflect.ValueOf((*gotdbot.CheckChatInviteLink)(nil)),
@@ -804,10 +830,12 @@ func init() {
 		"CollectibleItemType":                                     reflect.ValueOf((*gotdbot.CollectibleItemType)(nil)),
 		"CollectibleItemTypePhoneNumber":                          reflect.ValueOf((*gotdbot.CollectibleItemTypePhoneNumber)(nil)),
 		"CollectibleItemTypeUsername":                             reflect.ValueOf((*gotdbot.CollectibleItemTypeUsername)(nil)),
+		"CommandHandler":                                          reflect.ValueOf((*gotdbot.CommandHandler)(nil)),
 		"CommitPendingLiveStoryReactions":                         reflect.ValueOf((*gotdbot.CommitPendingLiveStoryReactions)(nil)),
 		"CommitPendingPaidMessageReactions":                       reflect.ValueOf((*gotdbot.CommitPendingPaidMessageReactions)(nil)),
 		"ComposeTextWithAi":                                       reflect.ValueOf((*gotdbot.ComposeTextWithAi)(nil)),
 		"ComposeTextWithAiOpts":                                   reflect.ValueOf((*gotdbot.ComposeTextWithAiOpts)(nil)),
+		"ConfirmBusinessConnectedBot":                             reflect.ValueOf((*gotdbot.ConfirmBusinessConnectedBot)(nil)),
 		"ConfirmQrCodeAuthentication":                             reflect.ValueOf((*gotdbot.ConfirmQrCodeAuthentication)(nil)),
 		"ConfirmSession":                                          reflect.ValueOf((*gotdbot.ConfirmSession)(nil)),
 		"ConnectAffiliateProgram":                                 reflect.ValueOf((*gotdbot.ConnectAffiliateProgram)(nil)),
@@ -822,8 +850,6 @@ func init() {
 		"ConnectionStateUpdating":                                 reflect.ValueOf((*gotdbot.ConnectionStateUpdating)(nil)),
 		"ConnectionStateWaitingForNetwork":                        reflect.ValueOf((*gotdbot.ConnectionStateWaitingForNetwork)(nil)),
 		"Contact":                                                 reflect.ValueOf((*gotdbot.Contact)(nil)),
-		"Context":                                                 reflect.ValueOf((*gotdbot.Context)(nil)),
-		"ContextUpdates":                                          reflect.ValueOf((*gotdbot.ContextUpdates)(nil)),
 		"Count":                                                   reflect.ValueOf((*gotdbot.Count)(nil)),
 		"Countries":                                               reflect.ValueOf((*gotdbot.Countries)(nil)),
 		"CountryInfo":                                             reflect.ValueOf((*gotdbot.CountryInfo)(nil)),
@@ -973,13 +999,16 @@ func init() {
 		"DisconnectAffiliateProgram":                              reflect.ValueOf((*gotdbot.DisconnectAffiliateProgram)(nil)),
 		"DisconnectAllWebsites":                                   reflect.ValueOf((*gotdbot.DisconnectAllWebsites)(nil)),
 		"DisconnectWebsite":                                       reflect.ValueOf((*gotdbot.DisconnectWebsite)(nil)),
-		"Dispatcher":                                              reflect.ValueOf((*gotdbot.Dispatcher)(nil)),
-		"DispatcherOpts":                                          reflect.ValueOf((*gotdbot.DispatcherOpts)(nil)),
 		"Document":                                                reflect.ValueOf((*gotdbot.Document)(nil)),
 		"DownloadFile":                                            reflect.ValueOf((*gotdbot.DownloadFile)(nil)),
 		"DownloadFileOpts":                                        reflect.ValueOf((*gotdbot.DownloadFileOpts)(nil)),
 		"DownloadedFileCounts":                                    reflect.ValueOf((*gotdbot.DownloadedFileCounts)(nil)),
 		"DraftMessage":                                            reflect.ValueOf((*gotdbot.DraftMessage)(nil)),
+		"DraftMessageContent":                                     reflect.ValueOf((*gotdbot.DraftMessageContent)(nil)),
+		"DraftMessageContentRichMessage":                          reflect.ValueOf((*gotdbot.DraftMessageContentRichMessage)(nil)),
+		"DraftMessageContentText":                                 reflect.ValueOf((*gotdbot.DraftMessageContentText)(nil)),
+		"DraftMessageContentVideoNote":                            reflect.ValueOf((*gotdbot.DraftMessageContentVideoNote)(nil)),
+		"DraftMessageContentVoiceNote":                            reflect.ValueOf((*gotdbot.DraftMessageContentVoiceNote)(nil)),
 		"DropGiftOriginalDetails":                                 reflect.ValueOf((*gotdbot.DropGiftOriginalDetails)(nil)),
 		"EditBotMediaPreview":                                     reflect.ValueOf((*gotdbot.EditBotMediaPreview)(nil)),
 		"EditBusinessChatLink":                                    reflect.ValueOf((*gotdbot.EditBusinessChatLink)(nil)),
@@ -1260,6 +1289,7 @@ func init() {
 		"GetConnectedWebsites":                                    reflect.ValueOf((*gotdbot.GetConnectedWebsites)(nil)),
 		"GetContacts":                                             reflect.ValueOf((*gotdbot.GetContacts)(nil)),
 		"GetCountries":                                            reflect.ValueOf((*gotdbot.GetCountries)(nil)),
+		"GetCountry":                                              reflect.ValueOf((*gotdbot.GetCountry)(nil)),
 		"GetCountryCode":                                          reflect.ValueOf((*gotdbot.GetCountryCode)(nil)),
 		"GetCountryFlagEmoji":                                     reflect.ValueOf((*gotdbot.GetCountryFlagEmoji)(nil)),
 		"GetCreatedPublicChats":                                   reflect.ValueOf((*gotdbot.GetCreatedPublicChats)(nil)),
@@ -1297,6 +1327,7 @@ func init() {
 		"GetForumTopicHistory":                                    reflect.ValueOf((*gotdbot.GetForumTopicHistory)(nil)),
 		"GetForumTopicLink":                                       reflect.ValueOf((*gotdbot.GetForumTopicLink)(nil)),
 		"GetForumTopics":                                          reflect.ValueOf((*gotdbot.GetForumTopics)(nil)),
+		"GetFullRichMessage":                                      reflect.ValueOf((*gotdbot.GetFullRichMessage)(nil)),
 		"GetGameHighScores":                                       reflect.ValueOf((*gotdbot.GetGameHighScores)(nil)),
 		"GetGiftAuctionAcquiredGifts":                             reflect.ValueOf((*gotdbot.GetGiftAuctionAcquiredGifts)(nil)),
 		"GetGiftAuctionState":                                     reflect.ValueOf((*gotdbot.GetGiftAuctionState)(nil)),
@@ -1333,6 +1364,7 @@ func init() {
 		"GetLanguagePackStrings":                                  reflect.ValueOf((*gotdbot.GetLanguagePackStrings)(nil)),
 		"GetLinkPreview":                                          reflect.ValueOf((*gotdbot.GetLinkPreview)(nil)),
 		"GetLinkPreviewOpts":                                      reflect.ValueOf((*gotdbot.GetLinkPreviewOpts)(nil)),
+		"GetLinkWebBrowserType":                                   reflect.ValueOf((*gotdbot.GetLinkWebBrowserType)(nil)),
 		"GetLiveStoryAvailableMessageSenders":                     reflect.ValueOf((*gotdbot.GetLiveStoryAvailableMessageSenders)(nil)),
 		"GetLiveStoryRtmpUrl":                                     reflect.ValueOf((*gotdbot.GetLiveStoryRtmpUrl)(nil)),
 		"GetLiveStoryStreamer":                                    reflect.ValueOf((*gotdbot.GetLiveStoryStreamer)(nil)),
@@ -1635,6 +1667,8 @@ func init() {
 		"InlineQueryResultsButtonType":                            reflect.ValueOf((*gotdbot.InlineQueryResultsButtonType)(nil)),
 		"InlineQueryResultsButtonTypeStartBot":                    reflect.ValueOf((*gotdbot.InlineQueryResultsButtonTypeStartBot)(nil)),
 		"InlineQueryResultsButtonTypeWebApp":                      reflect.ValueOf((*gotdbot.InlineQueryResultsButtonTypeWebApp)(nil)),
+		"InputAnimation":                                          reflect.ValueOf((*gotdbot.InputAnimation)(nil)),
+		"InputAudio":                                              reflect.ValueOf((*gotdbot.InputAudio)(nil)),
 		"InputBackground":                                         reflect.ValueOf((*gotdbot.InputBackground)(nil)),
 		"InputBackgroundLocal":                                    reflect.ValueOf((*gotdbot.InputBackgroundLocal)(nil)),
 		"InputBackgroundPrevious":                                 reflect.ValueOf((*gotdbot.InputBackgroundPrevious)(nil)),
@@ -1659,6 +1693,7 @@ func init() {
 		"InputCredentialsGooglePay":                               reflect.ValueOf((*gotdbot.InputCredentialsGooglePay)(nil)),
 		"InputCredentialsNew":                                     reflect.ValueOf((*gotdbot.InputCredentialsNew)(nil)),
 		"InputCredentialsSaved":                                   reflect.ValueOf((*gotdbot.InputCredentialsSaved)(nil)),
+		"InputDocument":                                           reflect.ValueOf((*gotdbot.InputDocument)(nil)),
 		"InputFile":                                               reflect.ValueOf((*gotdbot.InputFile)(nil)),
 		"InputFileGenerated":                                      reflect.ValueOf((*gotdbot.InputFileGenerated)(nil)),
 		"InputFileId":                                             reflect.ValueOf((*gotdbot.InputFileId)(nil)),
@@ -1695,6 +1730,7 @@ func init() {
 		"InputMessageForwarded":                                   reflect.ValueOf((*gotdbot.InputMessageForwarded)(nil)),
 		"InputMessageGame":                                        reflect.ValueOf((*gotdbot.InputMessageGame)(nil)),
 		"InputMessageInvoice":                                     reflect.ValueOf((*gotdbot.InputMessageInvoice)(nil)),
+		"InputMessageLiveLocation":                                reflect.ValueOf((*gotdbot.InputMessageLiveLocation)(nil)),
 		"InputMessageLocation":                                    reflect.ValueOf((*gotdbot.InputMessageLocation)(nil)),
 		"InputMessagePaidMedia":                                   reflect.ValueOf((*gotdbot.InputMessagePaidMedia)(nil)),
 		"InputMessagePhoto":                                       reflect.ValueOf((*gotdbot.InputMessagePhoto)(nil)),
@@ -1703,6 +1739,7 @@ func init() {
 		"InputMessageReplyToExternalMessage":                      reflect.ValueOf((*gotdbot.InputMessageReplyToExternalMessage)(nil)),
 		"InputMessageReplyToMessage":                              reflect.ValueOf((*gotdbot.InputMessageReplyToMessage)(nil)),
 		"InputMessageReplyToStory":                                reflect.ValueOf((*gotdbot.InputMessageReplyToStory)(nil)),
+		"InputMessageRichMessage":                                 reflect.ValueOf((*gotdbot.InputMessageRichMessage)(nil)),
 		"InputMessageStakeDice":                                   reflect.ValueOf((*gotdbot.InputMessageStakeDice)(nil)),
 		"InputMessageSticker":                                     reflect.ValueOf((*gotdbot.InputMessageSticker)(nil)),
 		"InputMessageStory":                                       reflect.ValueOf((*gotdbot.InputMessageStory)(nil)),
@@ -1741,10 +1778,22 @@ func init() {
 		"InputPassportElementTemporaryRegistration":               reflect.ValueOf((*gotdbot.InputPassportElementTemporaryRegistration)(nil)),
 		"InputPassportElementUtilityBill":                         reflect.ValueOf((*gotdbot.InputPassportElementUtilityBill)(nil)),
 		"InputPersonalDocument":                                   reflect.ValueOf((*gotdbot.InputPersonalDocument)(nil)),
+		"InputPhoto":                                              reflect.ValueOf((*gotdbot.InputPhoto)(nil)),
+		"InputPollMedia":                                          reflect.ValueOf((*gotdbot.InputPollMedia)(nil)),
+		"InputPollMediaAnimation":                                 reflect.ValueOf((*gotdbot.InputPollMediaAnimation)(nil)),
+		"InputPollMediaAudio":                                     reflect.ValueOf((*gotdbot.InputPollMediaAudio)(nil)),
+		"InputPollMediaDocument":                                  reflect.ValueOf((*gotdbot.InputPollMediaDocument)(nil)),
+		"InputPollMediaLink":                                      reflect.ValueOf((*gotdbot.InputPollMediaLink)(nil)),
+		"InputPollMediaLocation":                                  reflect.ValueOf((*gotdbot.InputPollMediaLocation)(nil)),
+		"InputPollMediaPhoto":                                     reflect.ValueOf((*gotdbot.InputPollMediaPhoto)(nil)),
+		"InputPollMediaSticker":                                   reflect.ValueOf((*gotdbot.InputPollMediaSticker)(nil)),
+		"InputPollMediaVenue":                                     reflect.ValueOf((*gotdbot.InputPollMediaVenue)(nil)),
+		"InputPollMediaVideo":                                     reflect.ValueOf((*gotdbot.InputPollMediaVideo)(nil)),
 		"InputPollOption":                                         reflect.ValueOf((*gotdbot.InputPollOption)(nil)),
 		"InputPollType":                                           reflect.ValueOf((*gotdbot.InputPollType)(nil)),
 		"InputPollTypeQuiz":                                       reflect.ValueOf((*gotdbot.InputPollTypeQuiz)(nil)),
 		"InputPollTypeRegular":                                    reflect.ValueOf((*gotdbot.InputPollTypeRegular)(nil)),
+		"InputRichMessage":                                        reflect.ValueOf((*gotdbot.InputRichMessage)(nil)),
 		"InputSticker":                                            reflect.ValueOf((*gotdbot.InputSticker)(nil)),
 		"InputStoryArea":                                          reflect.ValueOf((*gotdbot.InputStoryArea)(nil)),
 		"InputStoryAreaType":                                      reflect.ValueOf((*gotdbot.InputStoryAreaType)(nil)),
@@ -1763,6 +1812,7 @@ func init() {
 		"InputSuggestedPostInfo":                                  reflect.ValueOf((*gotdbot.InputSuggestedPostInfo)(nil)),
 		"InputTextQuote":                                          reflect.ValueOf((*gotdbot.InputTextQuote)(nil)),
 		"InputThumbnail":                                          reflect.ValueOf((*gotdbot.InputThumbnail)(nil)),
+		"InputVideo":                                              reflect.ValueOf((*gotdbot.InputVideo)(nil)),
 		"Int64Slice":                                              reflect.ValueOf((*gotdbot.Int64Slice)(nil)),
 		"InternalLinkType":                                        reflect.ValueOf((*gotdbot.InternalLinkType)(nil)),
 		"InternalLinkTypeAttachmentMenuBot":                       reflect.ValueOf((*gotdbot.InternalLinkTypeAttachmentMenuBot)(nil)),
@@ -1922,6 +1972,7 @@ func init() {
 		"LinkPreviewTypeVoiceNote":                                reflect.ValueOf((*gotdbot.LinkPreviewTypeVoiceNote)(nil)),
 		"LinkPreviewTypeWebApp":                                   reflect.ValueOf((*gotdbot.LinkPreviewTypeWebApp)(nil)),
 		"ListenToAudio":                                           reflect.ValueOf((*gotdbot.ListenToAudio)(nil)),
+		"LiveLocation":                                            reflect.ValueOf((*gotdbot.LiveLocation)(nil)),
 		"LiveStoryDonors":                                         reflect.ValueOf((*gotdbot.LiveStoryDonors)(nil)),
 		"LoadActiveStories":                                       reflect.ValueOf((*gotdbot.LoadActiveStories)(nil)),
 		"LoadChats":                                               reflect.ValueOf((*gotdbot.LoadChats)(nil)),
@@ -1953,6 +2004,7 @@ func init() {
 		"MaskPointForehead":                                       reflect.ValueOf((*gotdbot.MaskPointForehead)(nil)),
 		"MaskPointMouth":                                          reflect.ValueOf((*gotdbot.MaskPointMouth)(nil)),
 		"MaskPosition":                                            reflect.ValueOf((*gotdbot.MaskPosition)(nil)),
+		"MatchingOptions":                                         reflect.ValueOf((*gotdbot.MatchingOptions)(nil)),
 		"Message":                                                 reflect.ValueOf((*gotdbot.Message)(nil)),
 		"MessageAnimatedEmoji":                                    reflect.ValueOf((*gotdbot.MessageAnimatedEmoji)(nil)),
 		"MessageAnimation":                                        reflect.ValueOf((*gotdbot.MessageAnimation)(nil)),
@@ -2021,12 +2073,14 @@ func init() {
 		"MessageGiveawayPrizeStars":                               reflect.ValueOf((*gotdbot.MessageGiveawayPrizeStars)(nil)),
 		"MessageGiveawayWinners":                                  reflect.ValueOf((*gotdbot.MessageGiveawayWinners)(nil)),
 		"MessageGroupCall":                                        reflect.ValueOf((*gotdbot.MessageGroupCall)(nil)),
+		"MessageHandler":                                          reflect.ValueOf((*gotdbot.MessageHandler)(nil)),
 		"MessageImportInfo":                                       reflect.ValueOf((*gotdbot.MessageImportInfo)(nil)),
 		"MessageInteractionInfo":                                  reflect.ValueOf((*gotdbot.MessageInteractionInfo)(nil)),
 		"MessageInviteVideoChatParticipants":                      reflect.ValueOf((*gotdbot.MessageInviteVideoChatParticipants)(nil)),
 		"MessageInvoice":                                          reflect.ValueOf((*gotdbot.MessageInvoice)(nil)),
 		"MessageLink":                                             reflect.ValueOf((*gotdbot.MessageLink)(nil)),
 		"MessageLinkInfo":                                         reflect.ValueOf((*gotdbot.MessageLinkInfo)(nil)),
+		"MessageLiveLocation":                                     reflect.ValueOf((*gotdbot.MessageLiveLocation)(nil)),
 		"MessageLocation":                                         reflect.ValueOf((*gotdbot.MessageLocation)(nil)),
 		"MessageManagedBotCreated":                                reflect.ValueOf((*gotdbot.MessageManagedBotCreated)(nil)),
 		"MessageOrigin":                                           reflect.ValueOf((*gotdbot.MessageOrigin)(nil)),
@@ -2065,6 +2119,7 @@ func init() {
 		"MessageReplyTo":                                          reflect.ValueOf((*gotdbot.MessageReplyTo)(nil)),
 		"MessageReplyToMessage":                                   reflect.ValueOf((*gotdbot.MessageReplyToMessage)(nil)),
 		"MessageReplyToStory":                                     reflect.ValueOf((*gotdbot.MessageReplyToStory)(nil)),
+		"MessageRichMessage":                                      reflect.ValueOf((*gotdbot.MessageRichMessage)(nil)),
 		"MessageSchedulingState":                                  reflect.ValueOf((*gotdbot.MessageSchedulingState)(nil)),
 		"MessageSchedulingStateSendAtDate":                        reflect.ValueOf((*gotdbot.MessageSchedulingStateSendAtDate)(nil)),
 		"MessageSchedulingStateSendWhenOnline":                    reflect.ValueOf((*gotdbot.MessageSchedulingStateSendWhenOnline)(nil)),
@@ -2203,17 +2258,20 @@ func init() {
 		"PageBlockList":                                           reflect.ValueOf((*gotdbot.PageBlockList)(nil)),
 		"PageBlockListItem":                                       reflect.ValueOf((*gotdbot.PageBlockListItem)(nil)),
 		"PageBlockMap":                                            reflect.ValueOf((*gotdbot.PageBlockMap)(nil)),
+		"PageBlockMathematicalExpression":                         reflect.ValueOf((*gotdbot.PageBlockMathematicalExpression)(nil)),
 		"PageBlockParagraph":                                      reflect.ValueOf((*gotdbot.PageBlockParagraph)(nil)),
 		"PageBlockPhoto":                                          reflect.ValueOf((*gotdbot.PageBlockPhoto)(nil)),
 		"PageBlockPreformatted":                                   reflect.ValueOf((*gotdbot.PageBlockPreformatted)(nil)),
 		"PageBlockPullQuote":                                      reflect.ValueOf((*gotdbot.PageBlockPullQuote)(nil)),
 		"PageBlockRelatedArticle":                                 reflect.ValueOf((*gotdbot.PageBlockRelatedArticle)(nil)),
 		"PageBlockRelatedArticles":                                reflect.ValueOf((*gotdbot.PageBlockRelatedArticles)(nil)),
+		"PageBlockSectionHeading":                                 reflect.ValueOf((*gotdbot.PageBlockSectionHeading)(nil)),
 		"PageBlockSlideshow":                                      reflect.ValueOf((*gotdbot.PageBlockSlideshow)(nil)),
 		"PageBlockSubheader":                                      reflect.ValueOf((*gotdbot.PageBlockSubheader)(nil)),
 		"PageBlockSubtitle":                                       reflect.ValueOf((*gotdbot.PageBlockSubtitle)(nil)),
 		"PageBlockTable":                                          reflect.ValueOf((*gotdbot.PageBlockTable)(nil)),
 		"PageBlockTableCell":                                      reflect.ValueOf((*gotdbot.PageBlockTableCell)(nil)),
+		"PageBlockThinking":                                       reflect.ValueOf((*gotdbot.PageBlockThinking)(nil)),
 		"PageBlockTitle":                                          reflect.ValueOf((*gotdbot.PageBlockTitle)(nil)),
 		"PageBlockVerticalAlignment":                              reflect.ValueOf((*gotdbot.PageBlockVerticalAlignment)(nil)),
 		"PageBlockVerticalAlignmentBottom":                        reflect.ValueOf((*gotdbot.PageBlockVerticalAlignmentBottom)(nil)),
@@ -2313,6 +2371,16 @@ func init() {
 		"PlaceGiftAuctionBidOpts":                                 reflect.ValueOf((*gotdbot.PlaceGiftAuctionBidOpts)(nil)),
 		"Point":                                                   reflect.ValueOf((*gotdbot.Point)(nil)),
 		"Poll":                                                    reflect.ValueOf((*gotdbot.Poll)(nil)),
+		"PollMedia":                                               reflect.ValueOf((*gotdbot.PollMedia)(nil)),
+		"PollMediaAnimation":                                      reflect.ValueOf((*gotdbot.PollMediaAnimation)(nil)),
+		"PollMediaAudio":                                          reflect.ValueOf((*gotdbot.PollMediaAudio)(nil)),
+		"PollMediaDocument":                                       reflect.ValueOf((*gotdbot.PollMediaDocument)(nil)),
+		"PollMediaLink":                                           reflect.ValueOf((*gotdbot.PollMediaLink)(nil)),
+		"PollMediaLocation":                                       reflect.ValueOf((*gotdbot.PollMediaLocation)(nil)),
+		"PollMediaPhoto":                                          reflect.ValueOf((*gotdbot.PollMediaPhoto)(nil)),
+		"PollMediaSticker":                                        reflect.ValueOf((*gotdbot.PollMediaSticker)(nil)),
+		"PollMediaVenue":                                          reflect.ValueOf((*gotdbot.PollMediaVenue)(nil)),
+		"PollMediaVideo":                                          reflect.ValueOf((*gotdbot.PollMediaVideo)(nil)),
 		"PollOption":                                              reflect.ValueOf((*gotdbot.PollOption)(nil)),
 		"PollOptionProperties":                                    reflect.ValueOf((*gotdbot.PollOptionProperties)(nil)),
 		"PollType":                                                reflect.ValueOf((*gotdbot.PollType)(nil)),
@@ -2379,6 +2447,7 @@ func init() {
 		"PremiumLimitTypeCreatedPublicChatCount":                  reflect.ValueOf((*gotdbot.PremiumLimitTypeCreatedPublicChatCount)(nil)),
 		"PremiumLimitTypeCustomTextCompositionStyleCount":         reflect.ValueOf((*gotdbot.PremiumLimitTypeCustomTextCompositionStyleCount)(nil)),
 		"PremiumLimitTypeFavoriteStickerCount":                    reflect.ValueOf((*gotdbot.PremiumLimitTypeFavoriteStickerCount)(nil)),
+		"PremiumLimitTypeMessageTextLength":                       reflect.ValueOf((*gotdbot.PremiumLimitTypeMessageTextLength)(nil)),
 		"PremiumLimitTypeMonthlyPostedStoryCount":                 reflect.ValueOf((*gotdbot.PremiumLimitTypeMonthlyPostedStoryCount)(nil)),
 		"PremiumLimitTypeOwnedBotCount":                           reflect.ValueOf((*gotdbot.PremiumLimitTypeOwnedBotCount)(nil)),
 		"PremiumLimitTypePinnedArchivedChatCount":                 reflect.ValueOf((*gotdbot.PremiumLimitTypePinnedArchivedChatCount)(nil)),
@@ -2543,6 +2612,7 @@ func init() {
 		"RemoteFile":                                              reflect.ValueOf((*gotdbot.RemoteFile)(nil)),
 		"RemoveAllFilesFromDownloads":                             reflect.ValueOf((*gotdbot.RemoveAllFilesFromDownloads)(nil)),
 		"RemoveAllFilesFromDownloadsOpts":                         reflect.ValueOf((*gotdbot.RemoveAllFilesFromDownloadsOpts)(nil)),
+		"RemoveAllWebBrowserSettingsExceptions":                   reflect.ValueOf((*gotdbot.RemoveAllWebBrowserSettingsExceptions)(nil)),
 		"RemoveBusinessConnectedBotFromChat":                      reflect.ValueOf((*gotdbot.RemoveBusinessConnectedBotFromChat)(nil)),
 		"RemoveChatActionBar":                                     reflect.ValueOf((*gotdbot.RemoveChatActionBar)(nil)),
 		"RemoveContacts":                                          reflect.ValueOf((*gotdbot.RemoveContacts)(nil)),
@@ -2571,6 +2641,7 @@ func init() {
 		"RemoveStoryAlbumStories":                                 reflect.ValueOf((*gotdbot.RemoveStoryAlbumStories)(nil)),
 		"RemoveTextCompositionStyle":                              reflect.ValueOf((*gotdbot.RemoveTextCompositionStyle)(nil)),
 		"RemoveTopChat":                                           reflect.ValueOf((*gotdbot.RemoveTopChat)(nil)),
+		"RemoveWebBrowserSettingsException":                       reflect.ValueOf((*gotdbot.RemoveWebBrowserSettingsException)(nil)),
 		"ReorderActiveUsernames":                                  reflect.ValueOf((*gotdbot.ReorderActiveUsernames)(nil)),
 		"ReorderBotActiveUsernames":                               reflect.ValueOf((*gotdbot.ReorderBotActiveUsernames)(nil)),
 		"ReorderBotMediaPreviews":                                 reflect.ValueOf((*gotdbot.ReorderBotMediaPreviews)(nil)),
@@ -2661,18 +2732,33 @@ func init() {
 		"RevenueWithdrawalStateSucceeded":                         reflect.ValueOf((*gotdbot.RevenueWithdrawalStateSucceeded)(nil)),
 		"RevokeChatInviteLink":                                    reflect.ValueOf((*gotdbot.RevokeChatInviteLink)(nil)),
 		"RevokeGroupCallInviteLink":                               reflect.ValueOf((*gotdbot.RevokeGroupCallInviteLink)(nil)),
+		"RichMessage":                                             reflect.ValueOf((*gotdbot.RichMessage)(nil)),
+		"RichMessageSource":                                       reflect.ValueOf((*gotdbot.RichMessageSource)(nil)),
+		"RichMessageSourceHtml":                                   reflect.ValueOf((*gotdbot.RichMessageSourceHtml)(nil)),
+		"RichMessageSourceMarkdown":                               reflect.ValueOf((*gotdbot.RichMessageSourceMarkdown)(nil)),
 		"RichText":                                                reflect.ValueOf((*gotdbot.RichText)(nil)),
 		"RichTextAnchor":                                          reflect.ValueOf((*gotdbot.RichTextAnchor)(nil)),
 		"RichTextAnchorLink":                                      reflect.ValueOf((*gotdbot.RichTextAnchorLink)(nil)),
+		"RichTextBankCardNumber":                                  reflect.ValueOf((*gotdbot.RichTextBankCardNumber)(nil)),
 		"RichTextBold":                                            reflect.ValueOf((*gotdbot.RichTextBold)(nil)),
+		"RichTextBotCommand":                                      reflect.ValueOf((*gotdbot.RichTextBotCommand)(nil)),
+		"RichTextCashtag":                                         reflect.ValueOf((*gotdbot.RichTextCashtag)(nil)),
+		"RichTextCustomEmoji":                                     reflect.ValueOf((*gotdbot.RichTextCustomEmoji)(nil)),
+		"RichTextDateTime":                                        reflect.ValueOf((*gotdbot.RichTextDateTime)(nil)),
 		"RichTextEmailAddress":                                    reflect.ValueOf((*gotdbot.RichTextEmailAddress)(nil)),
 		"RichTextFixed":                                           reflect.ValueOf((*gotdbot.RichTextFixed)(nil)),
+		"RichTextHashtag":                                         reflect.ValueOf((*gotdbot.RichTextHashtag)(nil)),
 		"RichTextIcon":                                            reflect.ValueOf((*gotdbot.RichTextIcon)(nil)),
 		"RichTextItalic":                                          reflect.ValueOf((*gotdbot.RichTextItalic)(nil)),
 		"RichTextMarked":                                          reflect.ValueOf((*gotdbot.RichTextMarked)(nil)),
+		"RichTextMathematicalExpression":                          reflect.ValueOf((*gotdbot.RichTextMathematicalExpression)(nil)),
+		"RichTextMention":                                         reflect.ValueOf((*gotdbot.RichTextMention)(nil)),
+		"RichTextMentionName":                                     reflect.ValueOf((*gotdbot.RichTextMentionName)(nil)),
 		"RichTextPhoneNumber":                                     reflect.ValueOf((*gotdbot.RichTextPhoneNumber)(nil)),
 		"RichTextPlain":                                           reflect.ValueOf((*gotdbot.RichTextPlain)(nil)),
 		"RichTextReference":                                       reflect.ValueOf((*gotdbot.RichTextReference)(nil)),
+		"RichTextReferenceLink":                                   reflect.ValueOf((*gotdbot.RichTextReferenceLink)(nil)),
+		"RichTextSpoiler":                                         reflect.ValueOf((*gotdbot.RichTextSpoiler)(nil)),
 		"RichTextStrikethrough":                                   reflect.ValueOf((*gotdbot.RichTextStrikethrough)(nil)),
 		"RichTextSubscript":                                       reflect.ValueOf((*gotdbot.RichTextSubscript)(nil)),
 		"RichTextSuperscript":                                     reflect.ValueOf((*gotdbot.RichTextSuperscript)(nil)),
@@ -2703,8 +2789,13 @@ func init() {
 		"SearchChatMessages":                                      reflect.ValueOf((*gotdbot.SearchChatMessages)(nil)),
 		"SearchChatMessagesOpts":                                  reflect.ValueOf((*gotdbot.SearchChatMessagesOpts)(nil)),
 		"SearchChatRecentLocationMessages":                        reflect.ValueOf((*gotdbot.SearchChatRecentLocationMessages)(nil)),
+		"SearchChatTypeFilter":                                    reflect.ValueOf((*gotdbot.SearchChatTypeFilter)(nil)),
+		"SearchChatTypeFilterBot":                                 reflect.ValueOf((*gotdbot.SearchChatTypeFilterBot)(nil)),
+		"SearchChatTypeFilterChannel":                             reflect.ValueOf((*gotdbot.SearchChatTypeFilterChannel)(nil)),
 		"SearchChats":                                             reflect.ValueOf((*gotdbot.SearchChats)(nil)),
 		"SearchChatsOnServer":                                     reflect.ValueOf((*gotdbot.SearchChatsOnServer)(nil)),
+		"SearchChatsOnServerOpts":                                 reflect.ValueOf((*gotdbot.SearchChatsOnServerOpts)(nil)),
+		"SearchChatsOpts":                                         reflect.ValueOf((*gotdbot.SearchChatsOpts)(nil)),
 		"SearchContacts":                                          reflect.ValueOf((*gotdbot.SearchContacts)(nil)),
 		"SearchContactsOpts":                                      reflect.ValueOf((*gotdbot.SearchContactsOpts)(nil)),
 		"SearchEmojis":                                            reflect.ValueOf((*gotdbot.SearchEmojis)(nil)),
@@ -2744,6 +2835,7 @@ func init() {
 		"SearchOutgoingDocumentMessages":                          reflect.ValueOf((*gotdbot.SearchOutgoingDocumentMessages)(nil)),
 		"SearchPublicChat":                                        reflect.ValueOf((*gotdbot.SearchPublicChat)(nil)),
 		"SearchPublicChats":                                       reflect.ValueOf((*gotdbot.SearchPublicChats)(nil)),
+		"SearchPublicChatsOpts":                                   reflect.ValueOf((*gotdbot.SearchPublicChatsOpts)(nil)),
 		"SearchPublicMessagesByTag":                               reflect.ValueOf((*gotdbot.SearchPublicMessagesByTag)(nil)),
 		"SearchPublicPosts":                                       reflect.ValueOf((*gotdbot.SearchPublicPosts)(nil)),
 		"SearchPublicStoriesByLocation":                           reflect.ValueOf((*gotdbot.SearchPublicStoriesByLocation)(nil)),
@@ -2751,6 +2843,7 @@ func init() {
 		"SearchPublicStoriesByVenue":                              reflect.ValueOf((*gotdbot.SearchPublicStoriesByVenue)(nil)),
 		"SearchQuote":                                             reflect.ValueOf((*gotdbot.SearchQuote)(nil)),
 		"SearchRecentlyFoundChats":                                reflect.ValueOf((*gotdbot.SearchRecentlyFoundChats)(nil)),
+		"SearchRecentlyFoundChatsOpts":                            reflect.ValueOf((*gotdbot.SearchRecentlyFoundChatsOpts)(nil)),
 		"SearchSavedMessages":                                     reflect.ValueOf((*gotdbot.SearchSavedMessages)(nil)),
 		"SearchSavedMessagesOpts":                                 reflect.ValueOf((*gotdbot.SearchSavedMessagesOpts)(nil)),
 		"SearchSecretMessages":                                    reflect.ValueOf((*gotdbot.SearchSecretMessages)(nil)),
@@ -2820,6 +2913,7 @@ func init() {
 		"SendPollOpts":                                            reflect.ValueOf((*gotdbot.SendPollOpts)(nil)),
 		"SendQuickReplyShortcutMessages":                          reflect.ValueOf((*gotdbot.SendQuickReplyShortcutMessages)(nil)),
 		"SendResoldGift":                                          reflect.ValueOf((*gotdbot.SendResoldGift)(nil)),
+		"SendRichMessageDraft":                                    reflect.ValueOf((*gotdbot.SendRichMessageDraft)(nil)),
 		"SendStakeDiceOpts":                                       reflect.ValueOf((*gotdbot.SendStakeDiceOpts)(nil)),
 		"SendStickerOpts":                                         reflect.ValueOf((*gotdbot.SendStickerOpts)(nil)),
 		"SendStoryOpts":                                           reflect.ValueOf((*gotdbot.SendStoryOpts)(nil)),
@@ -2836,24 +2930,27 @@ func init() {
 		"SentGiftRegular":                                         reflect.ValueOf((*gotdbot.SentGiftRegular)(nil)),
 		"SentGiftUpgraded":                                        reflect.ValueOf((*gotdbot.SentGiftUpgraded)(nil)),
 		"Session":                                                 reflect.ValueOf((*gotdbot.Session)(nil)),
+		"SessionDeviceType":                                       reflect.ValueOf((*gotdbot.SessionDeviceType)(nil)),
+		"SessionDeviceTypeAndroid":                                reflect.ValueOf((*gotdbot.SessionDeviceTypeAndroid)(nil)),
+		"SessionDeviceTypeApple":                                  reflect.ValueOf((*gotdbot.SessionDeviceTypeApple)(nil)),
+		"SessionDeviceTypeBrave":                                  reflect.ValueOf((*gotdbot.SessionDeviceTypeBrave)(nil)),
+		"SessionDeviceTypeChrome":                                 reflect.ValueOf((*gotdbot.SessionDeviceTypeChrome)(nil)),
+		"SessionDeviceTypeEdge":                                   reflect.ValueOf((*gotdbot.SessionDeviceTypeEdge)(nil)),
+		"SessionDeviceTypeFirefox":                                reflect.ValueOf((*gotdbot.SessionDeviceTypeFirefox)(nil)),
+		"SessionDeviceTypeIpad":                                   reflect.ValueOf((*gotdbot.SessionDeviceTypeIpad)(nil)),
+		"SessionDeviceTypeIphone":                                 reflect.ValueOf((*gotdbot.SessionDeviceTypeIphone)(nil)),
+		"SessionDeviceTypeLinux":                                  reflect.ValueOf((*gotdbot.SessionDeviceTypeLinux)(nil)),
+		"SessionDeviceTypeMac":                                    reflect.ValueOf((*gotdbot.SessionDeviceTypeMac)(nil)),
+		"SessionDeviceTypeOpera":                                  reflect.ValueOf((*gotdbot.SessionDeviceTypeOpera)(nil)),
+		"SessionDeviceTypeSafari":                                 reflect.ValueOf((*gotdbot.SessionDeviceTypeSafari)(nil)),
+		"SessionDeviceTypeUbuntu":                                 reflect.ValueOf((*gotdbot.SessionDeviceTypeUbuntu)(nil)),
+		"SessionDeviceTypeUnknown":                                reflect.ValueOf((*gotdbot.SessionDeviceTypeUnknown)(nil)),
+		"SessionDeviceTypeVivaldi":                                reflect.ValueOf((*gotdbot.SessionDeviceTypeVivaldi)(nil)),
+		"SessionDeviceTypeWindows":                                reflect.ValueOf((*gotdbot.SessionDeviceTypeWindows)(nil)),
+		"SessionDeviceTypeXbox":                                   reflect.ValueOf((*gotdbot.SessionDeviceTypeXbox)(nil)),
 		"SessionType":                                             reflect.ValueOf((*gotdbot.SessionType)(nil)),
-		"SessionTypeAndroid":                                      reflect.ValueOf((*gotdbot.SessionTypeAndroid)(nil)),
-		"SessionTypeApple":                                        reflect.ValueOf((*gotdbot.SessionTypeApple)(nil)),
-		"SessionTypeBrave":                                        reflect.ValueOf((*gotdbot.SessionTypeBrave)(nil)),
-		"SessionTypeChrome":                                       reflect.ValueOf((*gotdbot.SessionTypeChrome)(nil)),
-		"SessionTypeEdge":                                         reflect.ValueOf((*gotdbot.SessionTypeEdge)(nil)),
-		"SessionTypeFirefox":                                      reflect.ValueOf((*gotdbot.SessionTypeFirefox)(nil)),
-		"SessionTypeIpad":                                         reflect.ValueOf((*gotdbot.SessionTypeIpad)(nil)),
-		"SessionTypeIphone":                                       reflect.ValueOf((*gotdbot.SessionTypeIphone)(nil)),
-		"SessionTypeLinux":                                        reflect.ValueOf((*gotdbot.SessionTypeLinux)(nil)),
-		"SessionTypeMac":                                          reflect.ValueOf((*gotdbot.SessionTypeMac)(nil)),
-		"SessionTypeOpera":                                        reflect.ValueOf((*gotdbot.SessionTypeOpera)(nil)),
-		"SessionTypeSafari":                                       reflect.ValueOf((*gotdbot.SessionTypeSafari)(nil)),
-		"SessionTypeUbuntu":                                       reflect.ValueOf((*gotdbot.SessionTypeUbuntu)(nil)),
-		"SessionTypeUnknown":                                      reflect.ValueOf((*gotdbot.SessionTypeUnknown)(nil)),
-		"SessionTypeVivaldi":                                      reflect.ValueOf((*gotdbot.SessionTypeVivaldi)(nil)),
-		"SessionTypeWindows":                                      reflect.ValueOf((*gotdbot.SessionTypeWindows)(nil)),
-		"SessionTypeXbox":                                         reflect.ValueOf((*gotdbot.SessionTypeXbox)(nil)),
+		"SessionTypeConnectedBot":                                 reflect.ValueOf((*gotdbot.SessionTypeConnectedBot)(nil)),
+		"SessionTypeDevice":                                       reflect.ValueOf((*gotdbot.SessionTypeDevice)(nil)),
 		"Sessions":                                                reflect.ValueOf((*gotdbot.Sessions)(nil)),
 		"SetAccentColor":                                          reflect.ValueOf((*gotdbot.SetAccentColor)(nil)),
 		"SetAccountTtl":                                           reflect.ValueOf((*gotdbot.SetAccountTtl)(nil)),
@@ -3534,6 +3631,7 @@ func init() {
 		"UpdateChatHasScheduledMessages":                          reflect.ValueOf((*gotdbot.UpdateChatHasScheduledMessages)(nil)),
 		"UpdateChatIsMarkedAsUnread":                              reflect.ValueOf((*gotdbot.UpdateChatIsMarkedAsUnread)(nil)),
 		"UpdateChatIsTranslatable":                                reflect.ValueOf((*gotdbot.UpdateChatIsTranslatable)(nil)),
+		"UpdateChatJoinResult":                                    reflect.ValueOf((*gotdbot.UpdateChatJoinResult)(nil)),
 		"UpdateChatLastMessage":                                   reflect.ValueOf((*gotdbot.UpdateChatLastMessage)(nil)),
 		"UpdateChatMember":                                        reflect.ValueOf((*gotdbot.UpdateChatMember)(nil)),
 		"UpdateChatMessageAutoDeleteTime":                         reflect.ValueOf((*gotdbot.UpdateChatMessageAutoDeleteTime)(nil)),
@@ -3573,7 +3671,6 @@ func init() {
 		"UpdateFileGenerationStart":                               reflect.ValueOf((*gotdbot.UpdateFileGenerationStart)(nil)),
 		"UpdateFileGenerationStop":                                reflect.ValueOf((*gotdbot.UpdateFileGenerationStop)(nil)),
 		"UpdateFileRemovedFromDownloads":                          reflect.ValueOf((*gotdbot.UpdateFileRemovedFromDownloads)(nil)),
-		"UpdateFilter":                                            reflect.ValueOf((*gotdbot.UpdateFilter)(nil)),
 		"UpdateForumTopic":                                        reflect.ValueOf((*gotdbot.UpdateForumTopic)(nil)),
 		"UpdateForumTopicInfo":                                    reflect.ValueOf((*gotdbot.UpdateForumTopicInfo)(nil)),
 		"UpdateFreezeState":                                       reflect.ValueOf((*gotdbot.UpdateFreezeState)(nil)),
@@ -3630,7 +3727,7 @@ func init() {
 		"UpdateOwnedStarCount":                                    reflect.ValueOf((*gotdbot.UpdateOwnedStarCount)(nil)),
 		"UpdateOwnedTonCount":                                     reflect.ValueOf((*gotdbot.UpdateOwnedTonCount)(nil)),
 		"UpdatePaidMediaPurchased":                                reflect.ValueOf((*gotdbot.UpdatePaidMediaPurchased)(nil)),
-		"UpdatePendingTextMessage":                                reflect.ValueOf((*gotdbot.UpdatePendingTextMessage)(nil)),
+		"UpdatePendingMessage":                                    reflect.ValueOf((*gotdbot.UpdatePendingMessage)(nil)),
 		"UpdatePoll":                                              reflect.ValueOf((*gotdbot.UpdatePoll)(nil)),
 		"UpdatePollAnswer":                                        reflect.ValueOf((*gotdbot.UpdatePollAnswer)(nil)),
 		"UpdateProfileAccentColors":                               reflect.ValueOf((*gotdbot.UpdateProfileAccentColors)(nil)),
@@ -3677,6 +3774,7 @@ func init() {
 		"UpdateUserStatus":                                        reflect.ValueOf((*gotdbot.UpdateUserStatus)(nil)),
 		"UpdateVideoPublished":                                    reflect.ValueOf((*gotdbot.UpdateVideoPublished)(nil)),
 		"UpdateWebAppMessageSent":                                 reflect.ValueOf((*gotdbot.UpdateWebAppMessageSent)(nil)),
+		"UpdateWebBrowserSettings":                                reflect.ValueOf((*gotdbot.UpdateWebBrowserSettings)(nil)),
 		"Updates":                                                 reflect.ValueOf((*gotdbot.Updates)(nil)),
 		"UpgradeBasicGroupChatToSupergroupChat":                   reflect.ValueOf((*gotdbot.UpgradeBasicGroupChatToSupergroupChat)(nil)),
 		"UpgradeGift":                                             reflect.ValueOf((*gotdbot.UpgradeGift)(nil)),
@@ -3790,6 +3888,12 @@ func init() {
 		"WebAppOpenModeFullScreen":                                reflect.ValueOf((*gotdbot.WebAppOpenModeFullScreen)(nil)),
 		"WebAppOpenModeFullSize":                                  reflect.ValueOf((*gotdbot.WebAppOpenModeFullSize)(nil)),
 		"WebAppOpenParameters":                                    reflect.ValueOf((*gotdbot.WebAppOpenParameters)(nil)),
+		"WebAppUrl":                                               reflect.ValueOf((*gotdbot.WebAppUrl)(nil)),
+		"WebBrowserSettings":                                      reflect.ValueOf((*gotdbot.WebBrowserSettings)(nil)),
+		"WebBrowserType":                                          reflect.ValueOf((*gotdbot.WebBrowserType)(nil)),
+		"WebBrowserTypeExternal":                                  reflect.ValueOf((*gotdbot.WebBrowserTypeExternal)(nil)),
+		"WebBrowserTypeInApp":                                     reflect.ValueOf((*gotdbot.WebBrowserTypeInApp)(nil)),
+		"WebDomainException":                                      reflect.ValueOf((*gotdbot.WebDomainException)(nil)),
 		"WebPageInstantView":                                      reflect.ValueOf((*gotdbot.WebPageInstantView)(nil)),
 		"WriteGeneratedFilePart":                                  reflect.ValueOf((*gotdbot.WriteGeneratedFilePart)(nil)),
 
@@ -3824,6 +3928,8 @@ func init() {
 		"_ChatAvailableReactions":               reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatAvailableReactions)(nil)),
 		"_ChatBoostSource":                      reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatBoostSource)(nil)),
 		"_ChatEventAction":                      reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatEventAction)(nil)),
+		"_ChatJoinRequestResult":                reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatJoinRequestResult)(nil)),
+		"_ChatJoinResult":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatJoinResult)(nil)),
 		"_ChatList":                             reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatList)(nil)),
 		"_ChatMemberStatus":                     reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatMemberStatus)(nil)),
 		"_ChatMembersFilter":                    reflect.ValueOf((*_github_com_AshokShau_gotdbot_ChatMembersFilter)(nil)),
@@ -3844,6 +3950,7 @@ func init() {
 		"_DeviceToken":                          reflect.ValueOf((*_github_com_AshokShau_gotdbot_DeviceToken)(nil)),
 		"_DiceStickers":                         reflect.ValueOf((*_github_com_AshokShau_gotdbot_DiceStickers)(nil)),
 		"_DiffEntityType":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_DiffEntityType)(nil)),
+		"_DraftMessageContent":                  reflect.ValueOf((*_github_com_AshokShau_gotdbot_DraftMessageContent)(nil)),
 		"_EmailAddressAuthentication":           reflect.ValueOf((*_github_com_AshokShau_gotdbot_EmailAddressAuthentication)(nil)),
 		"_EmailAddressResetState":               reflect.ValueOf((*_github_com_AshokShau_gotdbot_EmailAddressResetState)(nil)),
 		"_EmojiCategorySource":                  reflect.ValueOf((*_github_com_AshokShau_gotdbot_EmojiCategorySource)(nil)),
@@ -3879,6 +3986,7 @@ func init() {
 		"_InputPaidMediaType":                   reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputPaidMediaType)(nil)),
 		"_InputPassportElement":                 reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputPassportElement)(nil)),
 		"_InputPassportElementErrorSource":      reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputPassportElementErrorSource)(nil)),
+		"_InputPollMedia":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputPollMedia)(nil)),
 		"_InputPollType":                        reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputPollType)(nil)),
 		"_InputStoryAreaType":                   reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputStoryAreaType)(nil)),
 		"_InputStoryContent":                    reflect.ValueOf((*_github_com_AshokShau_gotdbot_InputStoryContent)(nil)),
@@ -3924,6 +4032,7 @@ func init() {
 		"_PaymentProvider":                      reflect.ValueOf((*_github_com_AshokShau_gotdbot_PaymentProvider)(nil)),
 		"_PaymentReceiptType":                   reflect.ValueOf((*_github_com_AshokShau_gotdbot_PaymentReceiptType)(nil)),
 		"_PhoneNumberCodeType":                  reflect.ValueOf((*_github_com_AshokShau_gotdbot_PhoneNumberCodeType)(nil)),
+		"_PollMedia":                            reflect.ValueOf((*_github_com_AshokShau_gotdbot_PollMedia)(nil)),
 		"_PollType":                             reflect.ValueOf((*_github_com_AshokShau_gotdbot_PollType)(nil)),
 		"_PollVoteRestrictionReason":            reflect.ValueOf((*_github_com_AshokShau_gotdbot_PollVoteRestrictionReason)(nil)),
 		"_PremiumFeature":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_PremiumFeature)(nil)),
@@ -3946,12 +4055,15 @@ func init() {
 		"_ResendCodeReason":                     reflect.ValueOf((*_github_com_AshokShau_gotdbot_ResendCodeReason)(nil)),
 		"_ResetPasswordResult":                  reflect.ValueOf((*_github_com_AshokShau_gotdbot_ResetPasswordResult)(nil)),
 		"_RevenueWithdrawalState":               reflect.ValueOf((*_github_com_AshokShau_gotdbot_RevenueWithdrawalState)(nil)),
+		"_RichMessageSource":                    reflect.ValueOf((*_github_com_AshokShau_gotdbot_RichMessageSource)(nil)),
 		"_RichText":                             reflect.ValueOf((*_github_com_AshokShau_gotdbot_RichText)(nil)),
 		"_SavedMessagesTopicType":               reflect.ValueOf((*_github_com_AshokShau_gotdbot_SavedMessagesTopicType)(nil)),
+		"_SearchChatTypeFilter":                 reflect.ValueOf((*_github_com_AshokShau_gotdbot_SearchChatTypeFilter)(nil)),
 		"_SearchMessagesChatTypeFilter":         reflect.ValueOf((*_github_com_AshokShau_gotdbot_SearchMessagesChatTypeFilter)(nil)),
 		"_SearchMessagesFilter":                 reflect.ValueOf((*_github_com_AshokShau_gotdbot_SearchMessagesFilter)(nil)),
 		"_SecretChatState":                      reflect.ValueOf((*_github_com_AshokShau_gotdbot_SecretChatState)(nil)),
 		"_SentGift":                             reflect.ValueOf((*_github_com_AshokShau_gotdbot_SentGift)(nil)),
+		"_SessionDeviceType":                    reflect.ValueOf((*_github_com_AshokShau_gotdbot_SessionDeviceType)(nil)),
 		"_SessionType":                          reflect.ValueOf((*_github_com_AshokShau_gotdbot_SessionType)(nil)),
 		"_SettingsSection":                      reflect.ValueOf((*_github_com_AshokShau_gotdbot_SettingsSection)(nil)),
 		"_SpeechRecognitionResult":              reflect.ValueOf((*_github_com_AshokShau_gotdbot_SpeechRecognitionResult)(nil)),
@@ -3996,6 +4108,7 @@ func init() {
 		"_UserType":                             reflect.ValueOf((*_github_com_AshokShau_gotdbot_UserType)(nil)),
 		"_VectorPathCommand":                    reflect.ValueOf((*_github_com_AshokShau_gotdbot_VectorPathCommand)(nil)),
 		"_WebAppOpenMode":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_WebAppOpenMode)(nil)),
+		"_WebBrowserType":                       reflect.ValueOf((*_github_com_AshokShau_gotdbot_WebBrowserType)(nil)),
 	}
 }
 
@@ -4299,6 +4412,26 @@ func (W _github_com_AshokShau_gotdbot_ChatEventAction) GetType() string {
 	return W.WGetType()
 }
 
+// _github_com_AshokShau_gotdbot_ChatJoinRequestResult is an interface wrapper for ChatJoinRequestResult type
+type _github_com_AshokShau_gotdbot_ChatJoinRequestResult struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_ChatJoinRequestResult) GetType() string {
+	return W.WGetType()
+}
+
+// _github_com_AshokShau_gotdbot_ChatJoinResult is an interface wrapper for ChatJoinResult type
+type _github_com_AshokShau_gotdbot_ChatJoinResult struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_ChatJoinResult) GetType() string {
+	return W.WGetType()
+}
+
 // _github_com_AshokShau_gotdbot_ChatList is an interface wrapper for ChatList type
 type _github_com_AshokShau_gotdbot_ChatList struct {
 	IValue   interface{}
@@ -4499,6 +4632,16 @@ func (W _github_com_AshokShau_gotdbot_DiffEntityType) GetType() string {
 	return W.WGetType()
 }
 
+// _github_com_AshokShau_gotdbot_DraftMessageContent is an interface wrapper for DraftMessageContent type
+type _github_com_AshokShau_gotdbot_DraftMessageContent struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_DraftMessageContent) GetType() string {
+	return W.WGetType()
+}
+
 // _github_com_AshokShau_gotdbot_EmailAddressAuthentication is an interface wrapper for EmailAddressAuthentication type
 type _github_com_AshokShau_gotdbot_EmailAddressAuthentication struct {
 	IValue   interface{}
@@ -4672,15 +4815,15 @@ func (W _github_com_AshokShau_gotdbot_GroupCallVideoQuality) GetType() string {
 // _github_com_AshokShau_gotdbot_Handler is an interface wrapper for Handler type
 type _github_com_AshokShau_gotdbot_Handler struct {
 	IValue        interface{}
-	WCheckUpdate  func(client *gotdbot.Client, ctx *gotdbot.Context) bool
-	WHandleUpdate func(client *gotdbot.Client, ctx *gotdbot.Context) error
+	WCheckUpdate  func(client *gotdbot.Client, update gotdbot.TlObject) bool
+	WHandleUpdate func(client *gotdbot.Client, update gotdbot.TlObject) error
 }
 
-func (W _github_com_AshokShau_gotdbot_Handler) CheckUpdate(client *gotdbot.Client, ctx *gotdbot.Context) bool {
-	return W.WCheckUpdate(client, ctx)
+func (W _github_com_AshokShau_gotdbot_Handler) CheckUpdate(client *gotdbot.Client, update gotdbot.TlObject) bool {
+	return W.WCheckUpdate(client, update)
 }
-func (W _github_com_AshokShau_gotdbot_Handler) HandleUpdate(client *gotdbot.Client, ctx *gotdbot.Context) error {
-	return W.WHandleUpdate(client, ctx)
+func (W _github_com_AshokShau_gotdbot_Handler) HandleUpdate(client *gotdbot.Client, update gotdbot.TlObject) error {
+	return W.WHandleUpdate(client, update)
 }
 
 // _github_com_AshokShau_gotdbot_InlineKeyboardButtonType is an interface wrapper for InlineKeyboardButtonType type
@@ -4850,6 +4993,16 @@ type _github_com_AshokShau_gotdbot_InputPassportElementErrorSource struct {
 }
 
 func (W _github_com_AshokShau_gotdbot_InputPassportElementErrorSource) GetType() string {
+	return W.WGetType()
+}
+
+// _github_com_AshokShau_gotdbot_InputPollMedia is an interface wrapper for InputPollMedia type
+type _github_com_AshokShau_gotdbot_InputPollMedia struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_InputPollMedia) GetType() string {
 	return W.WGetType()
 }
 
@@ -5303,6 +5456,16 @@ func (W _github_com_AshokShau_gotdbot_PhoneNumberCodeType) GetType() string {
 	return W.WGetType()
 }
 
+// _github_com_AshokShau_gotdbot_PollMedia is an interface wrapper for PollMedia type
+type _github_com_AshokShau_gotdbot_PollMedia struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_PollMedia) GetType() string {
+	return W.WGetType()
+}
+
 // _github_com_AshokShau_gotdbot_PollType is an interface wrapper for PollType type
 type _github_com_AshokShau_gotdbot_PollType struct {
 	IValue   interface{}
@@ -5523,6 +5686,16 @@ func (W _github_com_AshokShau_gotdbot_RevenueWithdrawalState) GetType() string {
 	return W.WGetType()
 }
 
+// _github_com_AshokShau_gotdbot_RichMessageSource is an interface wrapper for RichMessageSource type
+type _github_com_AshokShau_gotdbot_RichMessageSource struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_RichMessageSource) GetType() string {
+	return W.WGetType()
+}
+
 // _github_com_AshokShau_gotdbot_RichText is an interface wrapper for RichText type
 type _github_com_AshokShau_gotdbot_RichText struct {
 	IValue   interface{}
@@ -5540,6 +5713,16 @@ type _github_com_AshokShau_gotdbot_SavedMessagesTopicType struct {
 }
 
 func (W _github_com_AshokShau_gotdbot_SavedMessagesTopicType) GetType() string {
+	return W.WGetType()
+}
+
+// _github_com_AshokShau_gotdbot_SearchChatTypeFilter is an interface wrapper for SearchChatTypeFilter type
+type _github_com_AshokShau_gotdbot_SearchChatTypeFilter struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_SearchChatTypeFilter) GetType() string {
 	return W.WGetType()
 }
 
@@ -5580,6 +5763,16 @@ type _github_com_AshokShau_gotdbot_SentGift struct {
 }
 
 func (W _github_com_AshokShau_gotdbot_SentGift) GetType() string {
+	return W.WGetType()
+}
+
+// _github_com_AshokShau_gotdbot_SessionDeviceType is an interface wrapper for SessionDeviceType type
+type _github_com_AshokShau_gotdbot_SessionDeviceType struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_SessionDeviceType) GetType() string {
 	return W.WGetType()
 }
 
@@ -6020,5 +6213,15 @@ type _github_com_AshokShau_gotdbot_WebAppOpenMode struct {
 }
 
 func (W _github_com_AshokShau_gotdbot_WebAppOpenMode) GetType() string {
+	return W.WGetType()
+}
+
+// _github_com_AshokShau_gotdbot_WebBrowserType is an interface wrapper for WebBrowserType type
+type _github_com_AshokShau_gotdbot_WebBrowserType struct {
+	IValue   interface{}
+	WGetType func() string
+}
+
+func (W _github_com_AshokShau_gotdbot_WebBrowserType) GetType() string {
 	return W.WGetType()
 }

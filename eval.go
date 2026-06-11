@@ -15,10 +15,9 @@ import (
 	"github.com/traefik/yaegi/stdlib"
 )
 
-func evalCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
-	m := ctx.EffectiveMessage
+func evalCommandHandler(c *gotdbot.Client, m *gotdbot.Message) error {
 	if !IsDev(m.SenderID()) {
-		return gotdbot.EndGroups
+		return nil
 	}
 
 	text := m.GetText()
@@ -54,9 +53,8 @@ func evalCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 
 	customSymbols := map[string]map[string]reflect.Value{
 		"eval/eval": {
-			"C":   reflect.ValueOf(c),
-			"Ctx": reflect.ValueOf(ctx),
-			"M":   reflect.ValueOf(m),
+			"C": reflect.ValueOf(c),
+			"M": reflect.ValueOf(m),
 		},
 	}
 
@@ -77,10 +75,8 @@ import (
 
 func runSnippet() (res any) {
 	c := e.C
-	ctx := e.Ctx
 	m := e.M
 	_ = c
-	_ = ctx
 	_ = m
 	%s
 	return res
@@ -108,7 +104,7 @@ func main() {
 		}); sendErr != nil {
 			log.Printf("Failed to send error message: %v", sendErr)
 		}
-		return gotdbot.EndGroups
+		return nil
 	}
 
 	output := buildOutput(stdout, stderr)
@@ -118,7 +114,7 @@ func main() {
 		log.Printf("Failed to send output message: %v", err)
 	}
 
-	return gotdbot.EndGroups
+	return nil
 }
 
 func buildOutput(stdout, stderr bytes.Buffer) string {

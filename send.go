@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"log"
 	"os"
 	"strconv"
 	"time"
@@ -49,7 +48,7 @@ func sendResult(c *gotdbot.Client, queryID int64, output string) error {
 	if len([]rune(output)) <= maxMessageLen {
 		escaped := gotdbot.EscapeHTML(output)
 		text := "<pre language=\"" + language + "\">" + escaped + "</pre>"
-		ftext, err := gotdbot.GetFormattedText(c, text, nil, gotdbot.ParseModeHTML)
+		ftext, err := c.GetFormattedText(text, nil, gotdbot.ParseModeHTML)
 		if err != nil {
 			return fmt.Errorf("get formatted text: %w", err)
 		}
@@ -73,11 +72,11 @@ func sendResult(c *gotdbot.Client, queryID int64, output string) error {
 	defer os.Remove(tmpFile.Name())
 
 	if _, err = tmpFile.WriteString(output); err != nil {
-		tmpFile.Close()
+		_ = tmpFile.Close()
 		return fmt.Errorf("write temp file: %w", err)
 	}
 
-	tmpFile.Close()
+	_ = tmpFile.Close()
 	msg, err := c.SendDocument(adminID, gotdbot.InputFileLocal{Path: tmpFile.Name()}, &gotdbot.SendDocumentOpts{Caption: fmt.Sprintf("JSON result for guest query %d", queryID)})
 	if err != nil {
 		return fmt.Errorf("upload document: %w", err)
@@ -87,9 +86,9 @@ func sendResult(c *gotdbot.Client, queryID int64, output string) error {
 		Id:          strconv.FormatInt(time.Now().UnixNano(), 10),
 		Title:       "JSON Result",
 		Description: "Large JSON output",
-		DocumentUrl: msg.RemoteFileID(), // TDLib MOOD
+		DocumentUrl: msg.RemoteFileID(),
 		InputMessageContent: &gotdbot.InputMessageDocument{
-			Document: gotdbot.InputFileRemote{Id: msg.RemoteFileID()},
+			Document: &gotdbot.InputDocument{Document: gotdbot.InputFileRemote{Id: msg.RemoteFileID()}},
 			Caption: &gotdbot.FormattedText{
 				Text: fmt.Sprintf("JSON result for guest query %d", queryID),
 			},
@@ -98,7 +97,7 @@ func sendResult(c *gotdbot.Client, queryID int64, output string) error {
 
 	_, err = c.AnswerGuestQuery(queryID, result)
 	if err != nil {
-		log.Printf("[DEBUG] failed to answer guest query: %v", err)
+		c.Logger.Warnf("failed to answer guest query: %v", err)
 		return fmt.Errorf("answer guest query: %w", err)
 	}
 

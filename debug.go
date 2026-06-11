@@ -38,14 +38,12 @@ func setDebugEnabled(chatID int64, enabled bool) {
 	chatDebugState.mu.Unlock()
 }
 
-func debugCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
-	m := ctx.EffectiveMessage
-
-	chatID := ctx.EffectiveChatId
+func debugCommandHandler(c *gotdbot.Client, m *gotdbot.Message) error {
+	chatID := m.ChatId
 	parts := strings.Fields(m.GetText())
 	if len(parts) < 2 {
 		_, _ = m.ReplyText(c, "Usage: /debug on|off", nil)
-		return gotdbot.EndGroups
+		return nil
 	}
 
 	switch strings.ToLower(parts[1]) {
@@ -59,5 +57,5 @@ func debugCommandHandler(c *gotdbot.Client, ctx *gotdbot.Context) error {
 		_, _ = m.ReplyText(c, "Usage: /debug on|off", nil)
 	}
 
-	return gotdbot.EndGroups
+	return nil
 }

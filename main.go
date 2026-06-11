@@ -7,7 +7,6 @@ import (
 	"strconv"
 
 	"github.com/AshokShau/gotdbot"
-	"github.com/AshokShau/gotdbot/handlers"
 )
 
 func main() {
@@ -17,14 +16,16 @@ func main() {
 	}
 
 	bot, err := gotdbot.NewClient(int32(apiID), ApiHash, Token, &gotdbot.ClientOpts{
-		LibraryPath: "./libtdjson.so.1.8.64",
+		LibraryPath: "./libtdjson.so.1.8.65",
 	})
 
 	if err != nil {
 		log.Fatalf("Failed to create bot client: %v", err)
 	}
 
-	setupHandlers(bot.Dispatcher)
+	bot.OnCommand("eval", evalCommandHandler)
+	bot.OnCommand("debug", debugCommandHandler)
+	bot.AddHandler(&catchAllHandler{fn: printJsonHandler})
 
 	err = bot.Start()
 	if err != nil {
@@ -42,16 +43,10 @@ func main() {
 }
 
 type catchAllHandler struct {
-	fn func(*gotdbot.Client, *gotdbot.Context) error
+	fn func(*gotdbot.Client, gotdbot.TlObject) error
 }
 
-func (h *catchAllHandler) CheckUpdate(_ *gotdbot.Client, _ *gotdbot.Context) bool { return true }
-func (h *catchAllHandler) HandleUpdate(c *gotdbot.Client, ctx *gotdbot.Context) error {
-	return h.fn(c, ctx)
-}
-
-func setupHandlers(d *gotdbot.Dispatcher) {
-	d.AddHandler(handlers.NewCommand("eval", evalCommandHandler))
-	d.AddHandler(handlers.NewCommand("debug", debugCommandHandler))
-	d.AddHandlerToGroup(&catchAllHandler{fn: printJsonHandler}, 0)
+func (h *catchAllHandler) CheckUpdate(_ *gotdbot.Client, _ gotdbot.TlObject) bool { return true }
+func (h *catchAllHandler) HandleUpdate(c *gotdbot.Client, update gotdbot.TlObject) error {
+	return h.fn(c, update)
 }
