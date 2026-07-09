@@ -3,15 +3,14 @@
 package main
 
 import (
+	"github.com/AshokShau/gotdbot"
 	"go/constant"
 	"go/token"
 	"reflect"
-
-	"github.com/AshokShau/gotdbot"
 )
 
 func init() {
-	Symbols["github.com/AshokShau/gotdbot"] = map[string]reflect.Value{
+	Symbols["github.com/AshokShau/gotdbot/gotdbot"] = map[string]reflect.Value{
 		// function, constant and variable definitions
 		"Bool":                                          reflect.ValueOf(gotdbot.Bool),
 		"ContinueGroups":                                reflect.ValueOf(&gotdbot.ContinueGroups).Elem(),
