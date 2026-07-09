@@ -70,7 +70,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
-	"github.com/AshokShau/gotdbot"
+	td "github.com/AshokShau/gotdbot"
 )
 
 func runSnippet() (res any) {
