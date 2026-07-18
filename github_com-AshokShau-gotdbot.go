@@ -3,10 +3,11 @@
 package main
 
 import (
-	"github.com/AshokShau/gotdbot"
 	"go/constant"
 	"go/token"
 	"reflect"
+
+	"github.com/AshokShau/gotdbot"
 )
 
 func init() {
@@ -24,7 +25,6 @@ func init() {
 		"EscapeHTML":                                    reflect.ValueOf(gotdbot.EscapeHTML),
 		"EscapeMarkdown":                                reflect.ValueOf(gotdbot.EscapeMarkdown),
 		"GetDefaultManager":                             reflect.ValueOf(gotdbot.GetDefaultManager),
-		"GetInputFile":                                  reflect.ValueOf(gotdbot.GetInputFile),
 		"Mention":                                       reflect.ValueOf(gotdbot.Mention),
 		"NewClient":                                     reflect.ValueOf(gotdbot.NewClient),
 		"NewClientManager":                              reflect.ValueOf(gotdbot.NewClientManager),
@@ -1049,7 +1049,10 @@ func init() {
 		"EditChatSubscriptionInviteLink":                          reflect.ValueOf((*gotdbot.EditChatSubscriptionInviteLink)(nil)),
 		"EditCustomLanguagePackInfo":                              reflect.ValueOf((*gotdbot.EditCustomLanguagePackInfo)(nil)),
 		"EditEphemeralMessage":                                    reflect.ValueOf((*gotdbot.EditEphemeralMessage)(nil)),
+		"EditEphemeralMessageCaptionOpts":                         reflect.ValueOf((*gotdbot.EditEphemeralMessageCaptionOpts)(nil)),
+		"EditEphemeralMessageMediaOpts":                           reflect.ValueOf((*gotdbot.EditEphemeralMessageMediaOpts)(nil)),
 		"EditEphemeralMessageOpts":                                reflect.ValueOf((*gotdbot.EditEphemeralMessageOpts)(nil)),
+		"EditEphemeralMessageTextOpts":                            reflect.ValueOf((*gotdbot.EditEphemeralMessageTextOpts)(nil)),
 		"EditForumTopic":                                          reflect.ValueOf((*gotdbot.EditForumTopic)(nil)),
 		"EditForumTopicOpts":                                      reflect.ValueOf((*gotdbot.EditForumTopicOpts)(nil)),
 		"EditInlineMessageCaption":                                reflect.ValueOf((*gotdbot.EditInlineMessageCaption)(nil)),
