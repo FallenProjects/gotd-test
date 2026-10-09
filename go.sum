@@ -1,7 +1,7 @@
-github.com/AshokShau/gotdbot v0.9.4-0.20260716143553-cf06cdaf273c h1:J46KZt80LeBA3v11dzqna49ujGt1T7velJTCVUlmffg=
-github.com/AshokShau/gotdbot v0.9.4-0.20260716143553-cf06cdaf273c/go.mod h1:oaHOeC6pZoNp6Xp/jWRFw1yUif3/ASG2cxy6y/EMr3o=
-github.com/ebitengine/purego v0.10.1 h1:dewVBCBT2GaMu1SrNTYxQhgQBethzfhiwvZiLGP/qyY=
-github.com/ebitengine/purego v0.10.1/go.mod h1:iIjxzd6CiRiOG0UyXP+V1+jWqUXVjPKLAI0mRfJZTmQ=
+github.com/AshokShau/gotdbot v0.9.6-0.20261009103953-d434fdfc4e0b h1:Xu4NhhaYiDA3sh6o9I++QaTgxFWzRhdvn8FSV6dn08g=
+github.com/AshokShau/gotdbot v0.9.6-0.20261009103953-d434fdfc4e0b/go.mod h1:T0boPqYxF8Ttx9yDD3nM1Ry+SQVlqkJlNxnqDdH3pFs=
+github.com/ebitengine/purego v0.11.0 h1:jhp/D+Nyv7UUW8HAcmcjt2N2rYrYi9m3SL21k0Ua/NI=
+github.com/ebitengine/purego v0.11.0/go.mod h1:DCHPP08djqhNSoTfImcnHYQRZmd0qhakvrozqaEYhGQ=
 github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
 github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/traefik/yaegi v0.16.1 h1:f1De3DVJqIDKmnasUF6MwmWv1dSEEat0wcpXhD2On3E=
